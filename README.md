@@ -1,8 +1,10 @@
 # Ninety-Nine Scala Problems
 
-## 列表操作
+Do the [S-99: Ninety-Nine Scala Problems](http://aperiodic.net/phil/scala/s-99/)
 
-### P01 找最后元素
+## 1. Working with lists
+
+### P01 (*) Find the last element of a list
 
 ### P02 找倒数第二个元素
 
