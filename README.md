@@ -177,11 +177,47 @@ Fisher–Yates shuffle算法，复杂度 O(N)
 sortWith
 
 
-## 数学
+## 2. Arithmetic
+
+[S99Int.scala](src/main/scala/arithmetic/S99Int.scala)
+
+### P31 (**) Determine whether a given integer number is prime
 
 
+### P32 (**) Determine the greatest common divisor of two positive integer numbers.
+
+Use Euclid's algorithm.
+
+### P33 (*) Determine whether two positive integer numbers are coprime
+
+### P34 (**) Calculate Euler's totient function phi(m)
+
+Euler's so-called totient function phi(m) is defined as the number of positive integers r (1 <= r <= m) that are coprime to m.
+
+### P35 (**) Determine the prime factors of a given positive integer
+
+Construct a flat list containing the prime factors in ascending order.
 
 
+### P36
+### P37
+### P38
+### P39
+### P40
+### P41
+
+## 3. Logic and Codes
+
+
+## 4. Binary Trees
+
+
+## 5. Multiway Trees
+
+## 6. Graphs
+
+
+## 7. Miscellaneous Problems
 
 
 
