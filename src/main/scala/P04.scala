@@ -1,19 +1,15 @@
-// P04 (*) Find the number of elements of a list.
-//     Example:
-//     scala> length(List(1, 1, 2, 3, 5, 8))
-//     res0: Int = 6
+
 
 object P04 {
-  // Builtins.
+  // use lib function
   def lengthBuiltin[A](ls: List[A]): Int = ls.length
 
-  // Simple recursive solution.
+  // recursive solution
   def lengthRecursive[A](ls: List[A]): Int = ls match {
     case Nil => 0
     case _ :: tail => 1 + lengthRecursive(tail)
   }
 
-  // 尾递归
   // Tail recursive solution.  Theoretically more efficient; with tail-call
   // elimination in the compiler, this would run in constant space.
   // Unfortunately, the JVM doesn't do tail-call elimination in the general
@@ -27,16 +23,21 @@ object P04 {
       case Nil => result
       case _ :: tail => lengthR(result + 1, tail)
     }
+
     lengthR(0, ls)
   }
 
   // More pure functional solution, with folds.
   def lengthFunctional[A](ls: List[A]): Int = ls.foldLeft(0) { (c, _) => c + 1 }
+
+
+  def main(args: Array[String]): Unit = {
+    val list = List(1, 1, 2, 3, 5, 8)
+    println(lengthBuiltin(list))
+    println(lengthRecursive(list))
+    println(lengthTailRecursive(list))
+    println(lengthFunctional(list))
+  }
 }
 
 
-val list = List(1, 1, 2, 3, 5, 8)
-P04.lengthBuiltin(list)
-P04.lengthRecursive(list)
-P04.lengthTailRecursive(list)
-P04.lengthFunctional(list)

@@ -1,10 +1,5 @@
-// P05 (*) Reverse a list.
-//     Example:
-//     scala> reverse(List(1, 1, 2, 3, 5, 8))
-//     res0: List[Int] = List(8, 5, 3, 2, 1, 1)
 
 object P05 {
-  // Builtin.
   def reverseBuiltin[A](ls: List[A]): List[A] = ls.reverse
 
   // Simple recursive.  O(n^2)
@@ -19,17 +14,22 @@ object P05 {
       case Nil => result
       case h :: tail => reverseR(h :: result, tail)
     }
+
     reverseR(Nil, ls)
   }
 
   // Pure functional
   def reverseFunctional[A](ls: List[A]): List[A] =
     ls.foldLeft(List[A]()) { (r, h) => h :: r }
+
+  def main(args: Array[String]): Unit = {
+    val list = List(1, 1, 2, 3, 5, 8)
+    println(reverseBuiltin(list))
+    println(reverseRecursive(list))
+    println(reverseTailRecursive(list))
+    println(reverseFunctional(list))
+  }
 }
 
-val list = List(1, 1, 2, 3, 5, 8)
-P05.reverseBuiltin(list)
-P05.reverseRecursive(list)
-P05.reverseTailRecursive(list)
-P05.reverseFunctional(list)
+
 

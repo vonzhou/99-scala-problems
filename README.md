@@ -6,34 +6,117 @@ Do the [S-99: Ninety-Nine Scala Problems](http://aperiodic.net/phil/scala/s-99/)
 
 ### P01 (*) Find the last element of a list
 
-### P02 找倒数第二个元素
+[P01.scala](src/main/scala/P01.scala)
 
-### P03 找第K个元素
+### P02 (*) Find the last but one element of a list
 
-### P04 元素个数
+[P02.scala](src/main/scala/P02.scala)
 
-### P05 逆转
+### P03 (*) Find the Kth element of a list
 
-### P06 是否是回文
+By convention, the first element in the list is element 0.
 
-### P07 扁平化嵌套列表
+[P03.scala](src/main/scala/P03.scala)
 
-注意理解 flatMap, 相当于先map，然后flatten
+The `List(n)`  implementation:
 
-### P08 消除连续重复元素
+```scala
+def apply(n: Int): A = {
+    val rest = drop(n)
+    if (n < 0 || rest.isEmpty) throw new IndexOutOfBoundsException("" + n)
+    rest.head
+  }
+```
 
-dropWhile
+### P04 (*) Find the number of elements of a list
 
-### P09 聚集连续重复元素到子列表
+[P04.scala](src/main/scala/P04.scala)
 
-span
+The `List.length()` implementation:
 
-### P10 基于P09实现RLE（Run-length encoding ， 游程编码）
+```scala
+def length: Int = {
+    var these = self
+    var len = 0
+    while (!these.isEmpty) {
+      len += 1
+      these = these.tail
+    }
+    len
+  }
+```
 
-map
+### P05 (*) Reverse a list
+
+[P05.scala](src/main/scala/P05.scala)
+
+The `List.reverse()` implementation, O(N)?:
+
+```scala
+override def reverse: List[A] = {
+    var result: List[A] = Nil
+    var these = this
+    while (!these.isEmpty) {
+      result = these.head :: result
+      these = these.tail
+    }
+    result
+  }
+```
+
+### P06 (*) Find out whether a list is a palindrome
+
+[P06.scala](src/main/scala/P06.scala)
+
+### P07 (**) Flatten a nested list structure
+
+[P07.scala](src/main/scala/P07.scala)
+
+**Think** how flatMap implemented, map then flatten ?
 
 
-### P11 修改P10，仅重复元素编码成(N,E)格式
+### P08 (**) Eliminate consecutive duplicates of list elements
+
+[P08.scala](src/main/scala/P08.scala)
+
+
+use `dropWhile`.
+
+### P09 (**) Pack consecutive duplicates of list elements into sublists
+
+[P09.scala](src/main/scala/P09.scala)
+
+**Notice the differences of List's `partition` and `span`**.
+
+`partition` will put all "true" elements in one list, and the others in the second list.
+
+`span` will put all elements in one list until an element is "false" (in terms of the predicate). For example:
+
+```scala
+scala> val list = List(1,1,2,1,3)
+list: List[Int] = List(1, 1, 2, 1, 3)
+
+scala> list.partition{_ == 1}
+res0: (List[Int], List[Int]) = (List(1, 1, 1),List(2, 3))
+
+scala> list.span{_ == 1}
+res1: (List[Int], List[Int]) = (List(1, 1),List(2, 1, 3))
+```
+
+
+
+### P10 (*) Run-length encoding of a list
+
+Use the result of problem P09 to implement the so-called run-length encoding(游程编码) data compression method.
+Consecutive duplicates of elements are encoded as tuples (N, E) where N is the number of duplicates of the element E.
+
+[P10.scala](src/main/scala/P10.scala)
+
+
+### P11 (*) Modified run-length encoding
+
+Modify the result of problem P10 in such a way that if an element has no duplicates it is simply copied into the result list.
+Only elements with duplicates are transferred as (N, E) terms.
 
 ### P12 RLE解码
 

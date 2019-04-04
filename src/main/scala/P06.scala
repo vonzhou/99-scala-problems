@@ -1,7 +1,4 @@
-// P06 (*) Find out whether a list is a palindrome.
-//     Example:
-//     scala> isPalindrome(List(1, 2, 3, 2, 1))
-//     res0: Boolean = true
+
 
 object P06 {
   // In theory, we could be slightly more efficient than this.  This approach
@@ -15,15 +12,19 @@ object P06 {
   def isPalindrome2[A](ls: List[A]): Boolean = {
     if (ls.isEmpty)
       false
+
     for (i <- 0 to ls.length / 2) {
       if (ls(i) != ls(ls.length - 1 - i))
         false
     }
     true
   }
+
+  def main(args: Array[String]): Unit = {
+    val list = List(1, 2, 3, 2, 1)
+    println(isPalindrome(list))
+    println(isPalindrome2(list))
+  }
 }
 
 
-val list = List(1, 2, 3, 2, 1)
-P06.isPalindrome(list)
-P06.isPalindrome2(list)

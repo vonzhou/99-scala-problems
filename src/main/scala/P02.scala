@@ -1,15 +1,11 @@
-// P02 (*) Find the last but one element of a list.
-//     Example:
-//     scala> penultimate(List(1, 1, 2, 3, 5, 8))
-//     res0: Int = 5
 
 object P02 {
-  // Again, with builtins this is easy.
+  // use built-in, a list = init + tail
   def penultimateBuiltin[A](ls: List[A]): A =
     if (ls.isEmpty) throw new NoSuchElementException
     else ls.init.last
 
-  // But pattern matching also makes it easy.
+  // pattern matching
   def penultimateRecursive[A](ls: List[A]): A = ls match {
     case h :: _ :: Nil => h
     case _ :: tail => penultimateRecursive(tail)
@@ -40,8 +36,11 @@ object P02 {
     if (n <= 0) throw new IllegalArgumentException
     else lastNthR(n, ls, ls)
   }
+
+  def main(args: Array[String]): Unit = {
+    val list = List(1, 1, 2, 3, 5, 8)
+    println(penultimateBuiltin(list))
+    println(penultimateRecursive(list))
+  }
 }
 
-val list = List(1, 1, 2, 3, 5, 8)
-P02.penultimateBuiltin(list)
-P02.penultimateRecursive(list)

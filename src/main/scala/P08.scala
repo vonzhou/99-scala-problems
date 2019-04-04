@@ -1,11 +1,3 @@
-// P08 (**) Eliminate consecutive duplicates of list elements.
-//     If a list contains repeated elements they should be replaced with a
-//     single copy of the element.  The order of the elements should not be
-//     changed.
-//
-//     Example:
-//     scala> compress(List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e))
-//     res0: List[Symbol] = List('a, 'b, 'c, 'a, 'd, 'e)
 
 object P08 {
   // Standard recursive.
@@ -30,13 +22,17 @@ object P08 {
       if (r.isEmpty || r.head != h) h :: r
       else r
     }
+
+
+  def main(args: Array[String]): Unit = {
+    val lst1 = List(1, 1, 2, 1, 3, 4)
+    lst1.dropWhile(_ == 1)
+
+    val lst = List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)
+    println(compressRecursive(lst))
+    println(compressTailRecursive(lst))
+    println(compressFunctional(lst))
+  }
 }
 
 
-val lst1 = List(1, 1, 2, 1, 3, 4)
-lst1.dropWhile(_ == 1)
-
-val lst = List('a, 'a, 'a, 'a, 'b, 'c, 'c, 'a, 'a, 'd, 'e, 'e, 'e, 'e)
-P08.compressRecursive(lst)
-P08.compressTailRecursive(lst)
-P08.compressFunctional(lst)
